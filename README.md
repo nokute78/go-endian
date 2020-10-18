@@ -1,5 +1,9 @@
 # go-endian
 
+![Go](https://github.com/nokute78/go-endian/workflows/Go/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nokute78/go-endian)](https://goreportcard.com/report/github.com/nokute78/go-endian)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/nokute78/go-endian)](https://pkg.go.dev/github.com/nokute78/go-endian)
+
 A library to read/write n-byte big/little endian data.
 
 ## Feature
