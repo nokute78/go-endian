@@ -94,8 +94,13 @@ func read(b []byte, order ByteOrder, v reflect.Value, index *int) error {
 						/* only updates offset. not fill. */
 						*index = sizeOfValue(v.Field(i), true)
 						continue
-					} else if cnf.endian != nil {
-						err := read(b, cnf.endian, v.Field(i), index)
+					} else if cnf.endian != Endian_Type_BLANK {
+						var err error
+						if cnf.endian == Endian_Type_BE {
+							err = read(b, BigEndian, v.Field(i), index)
+						} else {
+							err = read(b, LittleEndian, v.Field(i), index)
+						}
 						if err != nil && err != errCannotInterface {
 							return err
 						}

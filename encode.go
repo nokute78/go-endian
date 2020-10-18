@@ -105,8 +105,13 @@ func write(v reflect.Value, order ByteOrder, b []byte, index *int) error {
 						/* only updates offset. not fill. */
 						*index += sizeOfValue(v.Field(i), true)
 						continue
-					} else if cnf.endian != nil {
-						err := write(v.Field(i), cnf.endian, b, index)
+					} else if cnf.endian != Endian_Type_BLANK {
+						var err error
+						if cnf.endian == Endian_Type_BE {
+							err = write(v.Field(i), BigEndian, b, index)
+						} else {
+							err = write(v.Field(i), LittleEndian, b, index)
+						}
 						if err != nil && err != errCannotInterface {
 							return err
 						}

@@ -57,12 +57,12 @@ func TestParseStructTag(t *testing.T) {
 				continue
 			}
 		case "LE":
-			if cnf.endian != LittleEndian {
+			if cnf.endian != Endian_Type_LE {
 				t.Errorf("%d: tag is LE but endian is not LittleEndian", i)
 				continue
 			}
 		case "BE":
-			if cnf.endian != BigEndian {
+			if cnf.endian != Endian_Type_BE {
 				t.Errorf("%d: tag is BE but endian is not BigEndian", i)
 				continue
 			}

@@ -17,13 +17,18 @@
 package endian
 
 import (
-	"encoding/binary"
 	"reflect"
 	"strings"
 )
 
 const (
 	tagKeyName = "endian"
+)
+
+const (
+	Endian_Type_BLANK = iota
+	Endian_Type_LE
+	Endian_Type_BE
 )
 
 // tagConfig represents StructTag.
@@ -34,7 +39,7 @@ const (
 type tagConfig struct {
 	ignore bool
 	skip   bool
-	endian ByteOrder
+	endian int
 }
 
 func parseStructTag(t reflect.StructTag) *tagConfig {
@@ -54,9 +59,9 @@ func parseStructTag(t reflect.StructTag) *tagConfig {
 			ret.skip = true
 			return ret
 		case "BE":
-			ret.endian = binary.BigEndian
+			ret.endian = Endian_Type_BE
 		case "LE":
-			ret.endian = binary.LittleEndian
+			ret.endian = Endian_Type_LE
 		}
 
 	}
